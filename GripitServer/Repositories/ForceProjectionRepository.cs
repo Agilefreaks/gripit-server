@@ -2,7 +2,7 @@
 using System.Reactive.Linq;
 using GripitServer.Models;
 
-namespace GripitServer.Services
+namespace GripitServer.Repositories
 {
     public class ForceProjectionRepository : NamedPipeRepository, IForceProjectionRepository
     {

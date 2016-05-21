@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive.Linq;
+using GripitServer.Repositories;
 
 namespace GripitServer.Services
 {

@@ -1,4 +1,4 @@
-namespace GripitServer.Services
+namespace GripitServer.Repositories
 {
     public interface INamedPipeRepository
     {

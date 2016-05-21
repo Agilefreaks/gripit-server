@@ -1,7 +1,7 @@
 ﻿using System;
 using GripitServer.Models;
 
-namespace GripitServer.Services
+namespace GripitServer.Repositories
 {
     public interface IForceProjectionRepository
     {

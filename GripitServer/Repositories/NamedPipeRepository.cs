@@ -3,7 +3,7 @@ using System.IO;
 using System.IO.Pipes;
 using System.Threading.Tasks;
 
-namespace GripitServer.Services
+namespace GripitServer.Repositories
 {
     public abstract class NamedPipeRepository : INamedPipeRepository
     {

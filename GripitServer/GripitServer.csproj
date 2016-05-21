@@ -76,22 +76,22 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\DataFrame.cs" />
     <Compile Include="Services\DataPortal.cs" />
-    <Compile Include="Services\INamedPipeRepository.cs" />
+    <Compile Include="Repositories\INamedPipeRepository.cs" />
     <Compile Include="Services\StateReaderService.cs" />
     <Compile Include="Services\DataFrameProcessor.cs" />
     <Compile Include="Models\ForceProjecion.cs" />
     <Compile Include="Services\GripitProcessor.cs" />
     <Compile Include="Services\HoldStateProcessor.cs" />
-    <Compile Include="Services\ForceProjectionRepository.cs" />
+    <Compile Include="Repositories\ForceProjectionRepository.cs" />
     <Compile Include="Services\IDataPortal.cs" />
     <Compile Include="Services\IStateReaderService.cs" />
     <Compile Include="Services\IDataFrameProcessor.cs" />
     <Compile Include="Services\IGripitProcessor.cs" />
     <Compile Include="Services\IHoldStateProcessor.cs" />
-    <Compile Include="Services\IForceProjectionRepository.cs" />
+    <Compile Include="Repositories\IForceProjectionRepository.cs" />
     <Compile Include="Services\ISchedulerProvider.cs" />
     <Compile Include="Services\IStartable.cs" />
-    <Compile Include="Services\NamedPipeRepository.cs" />
+    <Compile Include="Repositories\NamedPipeRepository.cs" />
     <Compile Include="Services\SchedulerProvider.cs" />
   </ItemGroup>
   <ItemGroup>

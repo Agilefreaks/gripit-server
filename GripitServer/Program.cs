@@ -1,4 +1,5 @@
 ﻿using System;
+using GripitServer.Repositories;
 using GripitServer.Services;
 using SimpleInjector;
 

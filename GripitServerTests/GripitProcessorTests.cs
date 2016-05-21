@@ -1,5 +1,6 @@
 ﻿using System.Reactive.Linq;
 using GripitServer.Models;
+using GripitServer.Repositories;
 using GripitServer.Services;
 using Microsoft.Reactive.Testing;
 using Moq;
