@@ -35,11 +35,13 @@ namespace GripitServer.Services
                 .ObserveOn(_schedulerProvider.Default)
                 .SubscribeOn(_schedulerProvider.Default)
                 .Subscribe();
+            _dataPortal.Open();
         }
 
         public void Stop()
         {
             _readSubscription?.Dispose();
+            _dataPortal.Close();
         }
     }
 }

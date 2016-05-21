@@ -24,12 +24,12 @@ namespace GripitServer.Services
 
         public IObservable<DataFrame> Messages { get; }
 
-        public void Start()
+        public void Open()
         {
             _serialPort.Connect();
         }
 
-        public void Stop()
+        public void Close()
         {
             _serialPort.Disconnect();
         }

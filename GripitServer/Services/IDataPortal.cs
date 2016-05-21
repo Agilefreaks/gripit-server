@@ -7,8 +7,8 @@ namespace GripitServer.Services
     {
         IObservable<DataFrame> Messages { get; }
 
-        void Start();
+        void Open();
 
-        void Stop();
+        void Close();
     }
 }
