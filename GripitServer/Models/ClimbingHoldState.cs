@@ -2,6 +2,8 @@
 {
     public class ClimbingHoldState
     {
+        public const int MaxValue = 1024;
+
         public string Id { get; set; }
 
         public int UpValue { get; set; }

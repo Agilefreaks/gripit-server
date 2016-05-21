@@ -16,7 +16,6 @@ namespace GripitServer.Services
         private static readonly string ValuesPattern = $"({ValuePattern}{ValueSeparator}){{3}}{ValuePattern}";
         private readonly Regex _stateDataRegex = new Regex($@"^({IdPattern}){IdSeparator}({ValuesPattern})$");
 
-
         public IList<ClimbingHoldState> GetHoldStates(DataFrame dataFrame)
         {
             var statesDataList = dataFrame.DataString.Split(StateSeparator);

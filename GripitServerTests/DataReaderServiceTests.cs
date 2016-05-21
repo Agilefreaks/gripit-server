@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reactive;
+using System.Reactive.Linq;
 using FluentAssertions;
 using GripitServer.Models;
 using GripitServer.Services;
@@ -13,7 +14,7 @@ namespace GripitServerTests
     [TestFixture]
     public class DataReaderServiceTests
     {
-        private DataReaderService _subject;
+        private StateReaderService _subject;
         private Mock<IDataPortal> _mockDataPortal;
         private Mock<IDataFrameProcessor> _mockDataFrameProcessor;
         private Mock<ISchedulerProvider> _mockSchedulerProvider;
@@ -25,7 +26,7 @@ namespace GripitServerTests
             _mockDataPortal = new Mock<IDataPortal>();
             _mockDataFrameProcessor = new Mock<IDataFrameProcessor>();
             _mockSchedulerProvider = new Mock<ISchedulerProvider>();
-            _subject = new DataReaderService(
+            _subject = new StateReaderService(
                 _mockDataPortal.Object,
                 _mockDataFrameProcessor.Object,
                 _mockSchedulerProvider.Object);
@@ -37,6 +38,24 @@ namespace GripitServerTests
         public void TearDown()
         {
             _subject.Stop();
+        }
+
+        [Test]
+        public void Start_Always_StartTheDataPortal()
+        {
+            _mockDataPortal.SetupGet(p => p.Messages).Returns(Observable.Return(new DataFrame(string.Empty)));
+
+            _subject.Start();
+
+            _mockDataPortal.Verify(p => p.Start(), Times.Once());
+        }
+
+        [Test]
+        public void Stop_Always_StopsTheDataPortal()
+        {
+            _subject.Stop();
+
+            _mockDataPortal.Verify(p => p.Stop(), Times.Once());
         }
 
         [Test]

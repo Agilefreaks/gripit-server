@@ -41,6 +41,10 @@
       <HintPath>packages\SerialPortLib.1.0.11\lib\SerialPortLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SimpleInjector, Version=3.2.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>packages\SimpleInjector.3.2.0-alpha2\lib\net45\SimpleInjector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Reactive.Core, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -72,12 +76,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\DataFrame.cs" />
     <Compile Include="Services\DataPortal.cs" />
-    <Compile Include="Services\DataReaderService.cs" />
+    <Compile Include="Services\StateReaderService.cs" />
     <Compile Include="Services\DataFrameProcessor.cs" />
+    <Compile Include="Models\ForceProjecion.cs" />
+    <Compile Include="Services\GripitProcessor.cs" />
+    <Compile Include="Services\HoldStateProcessor.cs" />
+    <Compile Include="Services\ForceProjectionRepository.cs" />
     <Compile Include="Services\IDataPortal.cs" />
-    <Compile Include="Services\IDataReaderService.cs" />
+    <Compile Include="Services\IStateReaderService.cs" />
     <Compile Include="Services\IDataFrameProcessor.cs" />
+    <Compile Include="Services\IGripitProcessor.cs" />
+    <Compile Include="Services\IHoldStateProcessor.cs" />
+    <Compile Include="Services\IForceProjectionRepository.cs" />
     <Compile Include="Services\ISchedulerProvider.cs" />
+    <Compile Include="Services\IStartable.cs" />
     <Compile Include="Services\SchedulerProvider.cs" />
   </ItemGroup>
   <ItemGroup>

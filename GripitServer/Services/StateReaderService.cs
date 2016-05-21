@@ -5,7 +5,7 @@ using GripitServer.Models;
 
 namespace GripitServer.Services
 {
-    public class DataReaderService : IDataReaderService
+    public class StateReaderService : IStateReaderService
     {
         private readonly Subject<ClimbingHoldState> _climbingHoldStateSubject;
         private readonly IDataPortal _dataPortal;
@@ -13,7 +13,7 @@ namespace GripitServer.Services
         private readonly ISchedulerProvider _schedulerProvider;
         private IDisposable _readSubscription;
 
-        public DataReaderService(
+        public StateReaderService(
             IDataPortal dataPortal,
             IDataFrameProcessor dataFrameProcessor,
             ISchedulerProvider schedulerProvider)
@@ -35,13 +35,13 @@ namespace GripitServer.Services
                 .ObserveOn(_schedulerProvider.Default)
                 .SubscribeOn(_schedulerProvider.Default)
                 .Subscribe();
-            _dataPortal.Open();
+            _dataPortal.Start();
         }
 
         public void Stop()
         {
             _readSubscription?.Dispose();
-            _dataPortal.Close();
+            _dataPortal.Stop();
         }
     }
 }

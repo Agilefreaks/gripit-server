@@ -3,12 +3,8 @@ using GripitServer.Models;
 
 namespace GripitServer.Services
 {
-    public interface IDataPortal
+    public interface IDataPortal : IStartable
     {
         IObservable<DataFrame> Messages { get; }
-
-        void Open();
-
-        void Close();
     }
 }
