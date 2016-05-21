@@ -13,6 +13,7 @@ namespace GripitServer.Mocks
         private readonly ISchedulerProvider _schedulerProvider;
         private StreamReader _reader;
         private IDisposable _dataSubscription;
+        private NamedPipeClientStream _client;
 
         public MockNamedPipeClient(ISchedulerProvider schedulerProvider)
         {
@@ -21,9 +22,9 @@ namespace GripitServer.Mocks
 
         public void Start()
         {
-            var client = new NamedPipeClientStream(PipeName);
-            client.Connect();
-            _reader = new StreamReader(client);
+            _client = new NamedPipeClientStream(PipeName);
+            _client.Connect();
+            _reader = new StreamReader(_client);
 
             _dataSubscription = Observable.Timer(TimeSpan.Zero, TimeSpan.FromMilliseconds(100))
                 .SubscribeOn(_schedulerProvider.Default)
@@ -35,6 +36,7 @@ namespace GripitServer.Mocks
         public void Stop()
         {
             _dataSubscription.Dispose();
+            _client.Dispose();
         }
 
         private static void Log(string data)
