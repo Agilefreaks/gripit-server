@@ -1,9 +1,14 @@
-﻿using GripitServer.Models;
+﻿using System;
+using GripitServer.Models;
 
 namespace GripitServer.Services
 {
     public interface IDataPortal
     {
-        DataFrame GetLastFrame();
+        IObservable<DataFrame> Messages { get; }
+
+        void Start();
+
+        void Stop();
     }
 }

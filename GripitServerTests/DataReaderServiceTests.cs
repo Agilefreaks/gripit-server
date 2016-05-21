@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reactive;
 using FluentAssertions;
 using GripitServer.Models;
 using GripitServer.Services;
@@ -25,7 +26,7 @@ namespace GripitServerTests
             _mockDataFrameProcessor = new Mock<IDataFrameProcessor>();
             _mockSchedulerProvider = new Mock<ISchedulerProvider>();
             _subject = new DataReaderService(
-                _mockDataPortal.Object, 
+                _mockDataPortal.Object,
                 _mockDataFrameProcessor.Object,
                 _mockSchedulerProvider.Object);
             _testScheduler = new TestScheduler();
@@ -39,10 +40,13 @@ namespace GripitServerTests
         }
 
         [Test]
-        public void Start_AfterWaitingForTheIntervalPeriod_ReadsADataFrameAndEmitsTheContainedStates()
+        public void Start_AfterReceivingADataFrameFromTheDataPortal_EmitsTheContainedStates()
         {
-            var dataFrame = new DataFrame();
-            _mockDataPortal.Setup(d => d.GetLastFrame()).Returns(dataFrame);
+            var dataFrame = new DataFrame("someFrame");
+            var observable = _testScheduler.CreateColdObservable(
+                new Recorded<Notification<DataFrame>>(10, Notification.CreateOnNext(dataFrame)),
+                new Recorded<Notification<DataFrame>>(20, Notification.CreateOnCompleted<DataFrame>()));
+            _mockDataPortal.Setup(d => d.Messages).Returns(observable);
             var climbingHoldStates = new List<ClimbingHoldState>
             {
                 new ClimbingHoldState { Id = "A12", DownValue = 12, LeftValue = 13 },

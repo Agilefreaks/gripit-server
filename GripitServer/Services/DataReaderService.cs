@@ -7,7 +7,6 @@ namespace GripitServer.Services
 {
     public class DataReaderService : IDataReaderService
     {
-        private const int SerialReadInterval = 100;
         private readonly Subject<ClimbingHoldState> _climbingHoldStateSubject;
         private readonly IDataPortal _dataPortal;
         private readonly IDataFrameProcessor _dataFrameProcessor;
@@ -30,8 +29,8 @@ namespace GripitServer.Services
 
         public void Start()
         {
-            _readSubscription = Observable.Timer(TimeSpan.Zero, TimeSpan.FromMilliseconds(SerialReadInterval), _schedulerProvider.Default)
-                .SelectMany(_ => _dataFrameProcessor.GetHoldStates(_dataPortal.GetLastFrame()))
+            _readSubscription = _dataPortal.Messages
+                .SelectMany(dataFrame => _dataFrameProcessor.GetHoldStates(dataFrame))
                 .Do(state => _climbingHoldStateSubject.OnNext(state))
                 .ObserveOn(_schedulerProvider.Default)
                 .SubscribeOn(_schedulerProvider.Default)
