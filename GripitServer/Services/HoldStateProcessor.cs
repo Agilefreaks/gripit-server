@@ -18,14 +18,12 @@ namespace GripitServer.Services
             var verticalOffset = VerticalOffset +
                                  (climbingHoldState.UpValue*UpWeight - climbingHoldState.DownValue*DownWeight);
 
-            var forceProjecion = new ForceProjecion
+            return new ForceProjecion
             {
                 Id = climbingHoldState.Id,
                 X = Project(horizontalOffset, ClimbingHoldState.MaxValue, ForceProjecion.MaxValue),
                 Y = Project(verticalOffset, ClimbingHoldState.MaxValue, ForceProjecion.MaxValue)
             };
-
-            return forceProjecion;
         }
 
         private static int Project(int offset, int sourceMaxValue, int targetMaxValue)
