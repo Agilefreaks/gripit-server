@@ -30,6 +30,8 @@ namespace GripitServer
             _container.Register<IStateReaderService, StateReaderService>(Lifestyle.Singleton);
             _container.Register<IGripitProcessor, GripitProcessor>(Lifestyle.Singleton);
             _container.Register<ISchedulerProvider, SchedulerProvider>(Lifestyle.Singleton);
+            _container.Register<IHoldStateProcessor, HoldStateProcessor>(Lifestyle.Singleton);
+            _container.Register<IForceProjectionRepository, ForceProjectionRepository>(Lifestyle.Singleton);
         }
     }
 }

@@ -76,6 +76,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\DataFrame.cs" />
     <Compile Include="Services\DataPortal.cs" />
+    <Compile Include="Services\INamedPipeRepository.cs" />
     <Compile Include="Services\StateReaderService.cs" />
     <Compile Include="Services\DataFrameProcessor.cs" />
     <Compile Include="Models\ForceProjecion.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Services\IForceProjectionRepository.cs" />
     <Compile Include="Services\ISchedulerProvider.cs" />
     <Compile Include="Services\IStartable.cs" />
+    <Compile Include="Services\NamedPipeRepository.cs" />
     <Compile Include="Services\SchedulerProvider.cs" />
   </ItemGroup>
   <ItemGroup>
