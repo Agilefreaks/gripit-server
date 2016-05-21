@@ -14,6 +14,7 @@ namespace GripitServer
         private static void Main()
         {
             SetupContainer();
+
             var gripitProcessor = _container.GetInstance<IGripitProcessor>();
             gripitProcessor.Start();
 

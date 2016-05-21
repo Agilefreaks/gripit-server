@@ -42,7 +42,6 @@ namespace GripitServer.Mocks
             Console.WriteLine(data);
         }
 
-
         private string ReadData()
         {
             return _reader.ReadLine();
