@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using System.Text;
 using GripitServer.Models;
 using SerialPortLib;
@@ -8,18 +8,19 @@ namespace GripitServer.Services
 {
     public class DataPortal : IDataPortal
     {
-        private readonly SerialPortInput _serialPort;
         private const string PortName = "/dev/ttyUSB0";
         private const int Baudrate = 115200;
+
+        private readonly SerialPortInput _serialPort;
+        private readonly Subject<DataFrame> _dataFrameSubject;
 
         public DataPortal()
         {
             _serialPort = new SerialPortInput();
             _serialPort.SetPort(PortName, Baudrate);
-            Messages = Observable.FromEvent<SerialPortInput.MessageReceivedEventHandler, MessageReceivedEventArgs>(
-                h => _serialPort.MessageReceived += h,
-                h => _serialPort.MessageReceived -= h)
-                .Select(eventArgs => new DataFrame(Encoding.ASCII.GetString(eventArgs.Data)));
+            _serialPort.MessageReceived += SerialPortOnMessageReceived;
+            _dataFrameSubject = new Subject<DataFrame>();
+            Messages = _dataFrameSubject;
         }
 
         public IObservable<DataFrame> Messages { get; }
@@ -32,6 +33,11 @@ namespace GripitServer.Services
         public void Stop()
         {
             _serialPort.Disconnect();
+        }
+
+        private void SerialPortOnMessageReceived(object sender, MessageReceivedEventArgs eventArgs)
+        {
+            _dataFrameSubject.OnNext(new DataFrame(Encoding.ASCII.GetString(eventArgs.Data)));
         }
     }
 }
