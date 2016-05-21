@@ -75,6 +75,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\DataFrame.cs" />
+    <Compile Include="Serializers\ForceProjectionSerializer.cs" />
+    <Compile Include="Serializers\IForceProjectionSerializer.cs" />
     <Compile Include="Services\DataPortal.cs" />
     <Compile Include="Repositories\INamedPipeRepository.cs" />
     <Compile Include="Services\StateReaderService.cs" />
