@@ -6,7 +6,7 @@ using Microsoft.Reactive.Testing;
 using Moq;
 using NUnit.Framework;
 
-namespace GripitServerTests
+namespace GripitServerTests.Services
 {
     [TestFixture]
     public class GripitProcessorTests

@@ -3,7 +3,7 @@ using GripitServer.Models;
 using GripitServer.Services;
 using NUnit.Framework;
 
-namespace GripitServerTests
+namespace GripitServerTests.Services
 {
     [TestFixture]
     public class HoldStateProcessorTests

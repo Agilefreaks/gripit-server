@@ -77,11 +77,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataFrameProcessorTests.cs" />
-    <Compile Include="DataReaderServiceTests.cs" />
-    <Compile Include="GripitProcessorTests.cs" />
+    <Compile Include="Services\DataFrameProcessorTests.cs" />
+    <Compile Include="Services\DataReaderServiceTests.cs" />
+    <Compile Include="Services\GripitProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="HoldStateProcessorTests.cs" />
+    <Compile Include="Services\HoldStateProcessorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
