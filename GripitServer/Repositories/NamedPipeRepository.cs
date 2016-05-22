@@ -43,7 +43,24 @@ namespace GripitServer.Repositories
 
         private void LogToPipe(string message)
         {
-            _writer.WriteLine(message);
+            try
+            {
+                _writer.WriteLine(message);
+            }
+            catch (IOException)
+            {
+                OnPipeBroken();
+            }
+        }
+
+        private void OnPipeBroken()
+        {
+            lock (_syncObject)
+            {
+                _logAction = NullLog;
+            }
+            Console.WriteLine("Pipe was broken");
+            StartServer();
         }
     }
 }
