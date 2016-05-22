@@ -8,8 +8,8 @@ namespace GripitServer.Services
 {
     public class DataPortal : IDataPortal
     {
-        private const string PortName = "/dev/ttyUSB0";
-        private const int Baudrate = 115200;
+        private const string PortName = "COM3";
+        private const int Baudrate = 9600;
 
         private readonly SerialPortInput _serialPort;
         private readonly Subject<DataFrame> _dataFrameSubject;

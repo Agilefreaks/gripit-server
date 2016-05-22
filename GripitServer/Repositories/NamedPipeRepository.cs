@@ -27,7 +27,7 @@ namespace GripitServer.Repositories
         {
             Task.Factory.StartNew(() =>
             {
-                var server = new NamedPipeServerStream(PipeName);
+                var server = new NamedPipeServerStream(PipeName, PipeDirection.InOut, 1, PipeTransmissionMode.Message, PipeOptions.Asynchronous);
                 server.WaitForConnection();
                 _writer = new StreamWriter(server);
                 lock (_syncObject)
@@ -46,6 +46,7 @@ namespace GripitServer.Repositories
             try
             {
                 _writer.WriteLine(message);
+                _writer.Flush();
             }
             catch (IOException)
             {
