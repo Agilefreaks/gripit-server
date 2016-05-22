@@ -18,10 +18,9 @@ namespace GripitServer.Repositories
             StartServer();
         }
 
-        protected void Save<TEntity>(TEntity entity)
-            where TEntity : class
+        protected void Save(string data)
         {
-            _logAction(entity.ToString());
+            _logAction(data);
         }
 
         private void StartServer()
